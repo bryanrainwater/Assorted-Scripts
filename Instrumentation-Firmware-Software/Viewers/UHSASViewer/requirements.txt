@@ -1,0 +1,10 @@
+cftime==1.6.2
+cx_Freeze==6.15.8
+jdcal==1.4.1
+lmfit==1.2.2
+matplotlib==3.7.1
+netCDF4==1.6.4
+numpy==1.24.2
+pandas==1.4.4
+PyQt5==5.15.9
+pyqtgraph==0.13.3
