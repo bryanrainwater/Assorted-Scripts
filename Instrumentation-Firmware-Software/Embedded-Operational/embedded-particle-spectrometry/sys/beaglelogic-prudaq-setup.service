@@ -1,0 +1,13 @@
+[Unit]
+Description=Enable PRUDAQ
+After=beaglelogic-startup.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/bin/bash /home/debian/OPC/beaglelogic-prudaq-setup.sh
+Restart=on-failure
+RestartSec=15
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,19 @@
+# This script is used to configure the PRU pins
+P8_45 pruin
+P8_46 pruin
+P8_44 pruin
+P8_43 pruin
+P8_42 pruin
+P8_41 pruin
+P8_40 pruin
+P8_39 pruin
+P8_27 pruin
+P8_28 pruin
+P8_29 pruin
+P8_30 pruin
+P9_26 pruin
+# Setting P9_31 to pruin for CFDC compatibility
+P9_31 pruin
+
+#p9_31 pwm
+

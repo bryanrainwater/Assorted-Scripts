@@ -1,0 +1,10 @@
+[Unit]
+Description=BeagleLogic Startup Script
+After=local-fs.target network.target am335x_evm.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /opt/BeagleLogic/scripts/beaglelogic-startup.sh
+
+[Install]
+WantedBy=multi-user.target

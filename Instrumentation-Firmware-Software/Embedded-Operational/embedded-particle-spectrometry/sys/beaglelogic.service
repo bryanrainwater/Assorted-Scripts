@@ -1,0 +1,14 @@
+[Unit]
+Description=BeagleLogic Logic Analyzer
+ConditionPathExists=|/opt/BeagleLogic
+
+[Service]
+WorkingDirectory=/opt/BeagleLogic/server
+EnvironmentFile=/etc/default/beaglelogic
+ExecStart=/usr/bin/nodejs '/opt/BeagleLogic/server/app.js'
+SyslogIdentifier=beaglelogic
+Restart=on-failure
+User=1000
+
+[Install]
+WantedBy=multi-user.target

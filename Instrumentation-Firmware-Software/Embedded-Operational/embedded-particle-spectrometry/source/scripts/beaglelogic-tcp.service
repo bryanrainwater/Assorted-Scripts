@@ -1,0 +1,14 @@
+[Unit]
+Description=BeagleLogic Logic Analyzer TCP Service
+ConditionPathExists=|DIR
+
+[Service]
+WorkingDirectory=DIR/tcp-server-go
+EnvironmentFile=/etc/default/beaglelogic-tcp
+ExecStart=DIR/tcp-server-go/server
+SyslogIdentifier=beaglelogic-tcp
+Restart=on-failure
+User=1000
+
+[Install]
+WantedBy=multi-user.target

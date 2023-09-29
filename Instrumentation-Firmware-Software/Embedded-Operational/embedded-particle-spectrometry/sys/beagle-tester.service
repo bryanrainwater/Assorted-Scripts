@@ -1,0 +1,7 @@
+[Unit]
+Description=Beagle Self-test
+Requires=dev-input-beagle\x2dbarcode.device 
+BindsTo=dev-input-beagle\x2dbarcode.device
+
+[Service]
+ExecStart=/usr/sbin/beagle-tester
