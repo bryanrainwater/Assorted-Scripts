@@ -1,0 +1,6 @@
+PORT=COM3
+ANALOG_CHANNEL=0
+DATA_RATE=4
+PERIOD=1.0
+PREFIX=Data
+DIRECTORY=C:/Users/rainw/github/teensy

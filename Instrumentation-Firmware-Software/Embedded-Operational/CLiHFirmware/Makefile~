@@ -1,0 +1,19 @@
+#
+# Makefile
+# Copyright (c) 2014 by Diamond Systems.
+#
+# Make file to build Demo application
+#
+
+APPName = ARIESADSample
+LIB =-L ../Common/ -ldscud-7.00 -lm -lpthread
+INC =-I ../Common/
+
+all: $(APPName).o
+
+$(APPName).o:
+	gcc -o $(APPName) $(APPName).c $(INC) $(LIB)
+	cp $(APPName) ../Executables
+
+clean:
+	rm -f $(APPName).o

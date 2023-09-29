@@ -1,0 +1,35 @@
+File Format #: 1001
+PI (last name, first name): Toohey, Darin; Rainwater, Bryan
+Organization/affiliation of PI: University of Colorado
+Data source description: CLH: Condensed water concentration (ice + liquid water) from laser spectrometer measurements of water vapor resulting from the vaporization of condensed water particles in heated inlet.
+Mission name: NSF SOCRATES Mission 2018
+File volume number, file volumes: 1, 1
+Data Interval (if interval > 1 seconds, set to 0 and must report start and stop times in data): 1.0
+Description of independent variable: Start_UTC, seconds, seconds since start of day of record
+Number of dependent variables: 1
+Scale factors (extended for number of variables): 1
+Missing data indicators (extended for number of variables): -9999
+Variable names and units: ###COMPUTED###
+Number of special comments: 0
+Special comments: 
+Number of normal comments: 0
+Normal comments: 
+PI_CONTACT_INFO:  University of Colorado - ATOC; 4001 Discovery Drive, Boulder, CO 80303; toohey@colorado.edu
+PLATFORM: NSF/NCAR GV (HIAPER)- sampling from canister on right outboard pylon
+LOCATION: Aircraft location data available from http://data.eol.ucar.edu/master_list/?project=SOCRATES
+ASSOCIATED_DATA: N/A
+INSTRUMENT_INFO: CLH2 Total Water - Tunable diode laser hygrometer sampling through subisokinetic heated inlet.
+DATA_INFO: Condensed water concentration is corrected for inertial enhancement of particle concentrations in subisokinetic inlet.
+UNCERTAINTY:  The uncertainty is estimated to be +/- 20% CWC (1-sigma)
+ULOD_FLAG: -7777
+ULOD_VALUE: contact PI for information
+LLOD_FLAG: -8888
+LLOD_VALUE: contact PI for information
+DM_CONTACT_INFO: TBD
+PROJECT_INFO: SOCRATES Mission Jan – Feb, 2018; based in Hobart, Tasmania (Australia).
+STIPULATIONS_ON_USE: Please consult SOCRATES data policy: https://www.eol.ucar.edu/content/socrates-data-policy
+OTHER_COMMENTS: none.
+REVISION: R1
+R1: Final data. Subsequent post-mission calibration applied.
+R0: Preliminary data. Post-mission calibration applied and condensed water concentration calculated.  Bad data points flagged.
+RA: Field data.

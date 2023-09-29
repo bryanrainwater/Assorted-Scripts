@@ -1,0 +1,259 @@
+### PENDING CHANGES LIST ###
+
+COMPLETE * Need to add blank list for raw input output list to front panel...
+	COMPLETE * Potentially add header to raw input/output list
+		NOTE: Header only added for left side, consider removing output list
+COMPLETE * Duplicate second plot changes to the first plot...
+COMPLETE * Improve color schemes on plots and modify font sizes...
+COMPLETE * Expand instructional interface on front panel...
+COMPLETE Add full interfacing of Auxiliary device configurations...
+COMPLETE * Encompass configuration file into program defaults...
+COMPLETE * Create Error Status Indicator on Front panel (IN RED) appended to instructional list.
+COMPLETE * Add Error code blocks to populate Error Status Indicator on Front Panel
+COMPLETE * Populate error code array and disperse to various exception blocks
+COMPLETE * Reimplement linux variant with the aforementioned updates.
+	Linux Variant Requires:
+		self.basedir = os.path.expanduser('~/CVI/')	 #Full path required; however, os.path.expanduser will allow use of ~
+COMPLETE * Change Defaults file for linux path '~/CVI/'
+COMPLETE * Rectify Issue with counterflow reduction overshooting.
+COMPLETE * Provide error instructions for if any files are not found.
+COMPLETE * Identify issue with segmentation faults occuring in linux and NOT windows
+	COMPLETE * Correct Linux thread.join() issue. Currently disabled which can cause problems in future
+COMPLETE * Add DSM header box on calibrations panel
+COMPLETE * Add calibration coefficient version dropdown
+
+COMPLETE * Add rolling save files for main status and error status indicators
+COMPLETE * Correct calibration saving routine such that it will actually update
+UNECESSARY * Allow realtime updating for reading calibration coefficients from tables
+COMPLETE * Add delete button for deleting certain coefficients
+COMPLETE * Add update button to reread calibrations from files
+COMPLETE * Add ability to prevent rapid updates to text entry fields so that a . is not read, etc. (check if field is being entered?)
+COMPLETE * Remove DSM Header printout to terminal
+UNECESSARY * Add wrap text and scrollable to dsm header box.
+* Verify why flow can be "off" and yet the user input voltages will still output.
+COMPLETE * Correct raw input/output indicator updating (and labeling)
+COMPLETE * Correct Display scaling for program
+COMPLETE * Verify that when instrument add routine is cancelled, valves are reverted and things are reversed.
+COMPLETE * Add sliders to everything!!!
+* Add counterflow excess increase button for just in case moments
+* Allow cvfx0, cvfx2, cvfx3, cvfx4 to independently increased while allowing other flows to compensate.
+	cvfx0 would compensate for any changes to the other ones (autopilot button?)
+COMPLETE * Grey out the connect and disconnect buttons after the connect button is pressed.
+COMPLETE * Add checklist that pops up upon request that allows you to set a data folder prefix for flight, etc.
+COMPLETE * Add dropdown list for common notes to be added to the log
+
+* Add notes for when toggles are changed
+PARTIAL * CLEAN UP AND COMMENT CODE
+PARTIAL * Check to make sure nothing references text fields
+	* Instrument configurations still reference fields, replace areas with exception handling
+* Continue updates to error log and main log
+* Use findChild method for most objects and then remove repetitive objects
+* Determine whether or not flows or manual voltage controls need to have negative values
+
+COMPLETE * Correct NIDAS header output....
+* Correct text entry fields (manVolt) to be editingFinished...
+
+* Repair calibration coefficients dynamic array growth (currently capped at 20 versions)
+
+Miscellaneous Updates
+* Added exception handling for full feedback loop. Try to perform calculation, exception prints out raw data stream to terminal.
+
+ARISTO Updates
+* Fix input/output raw list for relabeling....
+* The common notes button is a little too close for comfort (accidentally hit)
+* The start and stop button is too close to the cvi mode button
+COMPLETE * Fix the lower time series sizing
+COMPLETE * Add units to flows on front panel (or change to cvfx4c)
+COMPLETE * The connect wording needs to be changed for auxiliary instruments
+* Don't gray out the other tabs while flow is reducing
+COMPLETE * Fix cvimode boolean integer to second column of file.
+COMPLETE * Make notes window smaller to see more of the variables below
+COMPLETE * Automatic note taking
+COMPLETE * Create manual for changing the temperature controller set points
+COMPLETE * Fix output precision for data from dsm (INSTEAD ADDED TAB DELIMITING)
+COMPLETE * Prevent plotting rescaling on x axis
+	ALREADY * Create button to automatically readjust time series
+COMPLETE * Fix time delay on disconnect routine? (Readjusting the slots to be more understandable)
+COMPLETE * Adjust valve naming in instrument change routines to use labels from defaults file.
+COMPLETE * Creat shortcut on desktop for CVI folder
+COMPLETE * Adjust TDL calibration coefficients to older values
+	-0.2	1.33676	-0.03415	0.00145
+COMPLETE * Add seconds from midnight to notes and error logs (remove date?)
+
+PARTIAL * Core dump after start is pressed in double succession (Address was already allocated)
+
+* Various cosmetic changes
+
+* Put Stop button in upper right corner if possible, currently too close to comment window. Would be bad to accidentally hit it in turbulence
+COMPLETE * You can't read start file name at all when it's bright as it was yesterday and tends to be at high altitude.
+* Time series: * Need to type in Manual Yaxis setpoints as we've discussed
+	COMPLETE * Remove Y2 scale when not being used to avoid confusion
+	VOID (cals are 1:1) * CVFX5R and CVFX5C seem to be the same
+	COMPLETE * Change light blue to bright green or something more prominent. 
+COMPLETE * Default start values: Time series start with rhoo_tdl on top and cvcnco1 on bottom.
+COMPLETE * cvf3c at 0.3, cvfx0c at 2.0.
+COMPLETE (Changed to "CF_Excess") * Can you make CVf3C setting more prominent, and/or move it to top, and label it "cntrflow"?
+COMPLETE (appended _CVI.dat) * Think it's time to change the data file name from nn.nnq to nn.nvCVI.dat or nn.nvCVI.txt
+COMPLETE * User Notes to add: Taxi, Takeoff, Heaters ON, Landed
+
+* Change units corresponding to ['H2O','ptdl','ttdl','cvf3','cvcnc1','cvcnc01','cvrho_tdl',
+              'cvrhoo_tdl','opcc','opcco','cvfx5R','cvfx5c','cvts','cvtai','cvcfact'
+	to  [g m-3, mb, C, vlpm (or slpm?), # cm-3, # cm-3, g m-3, g m-3, # cm-3, # cm-3, slpm, vlpm, C, C, unitless]
+
+* Look into the rollover values for TDL (do we want it to send an error message whenever data is lost and then regained, but not every second?)
+
+
+* Begin writing TDL calibration automation routine.
+	Will need to write real flow to cvfx2wr, while reading cvfx2 and all of the H2O return parameters
+	Will need to write cvfx3wr for dew point generator and read the return.
+	Choices:
+		Comma delimited steps field
+		Minimum time between steps before checking for stability. (Maximum time before moving on?.... timeout)
+	Plot the return signals as it goes
+	Create a plot for the setpoint mixing ratio with the returned mixing ratio.
+	Second plot for the returned tdl mixing ratio
+	Create tab delimited save file with all of the above data.
+	Implementation:
+		Create the various widgets
+		Start and Cancel button (cancel greyed until started, and start greyed once started.)
+		Once start is pressed, all other tabs locked, flow turned on, cvfx2 set to what is on new screen.
+		Once flow return has settled, begin set point ramps and grey out everything except cancel.
+		Add check in processData for if TDL cals occuring, emit signal each time data comes
+			in for plotting, saving, analyzing, etc.
+	Unsure of how to handle cvfx3 so it can be seen using raw voltage.
+		
+		
+		
+		
+* There is a potentially LARGE issue that if the client is severed forcibly, it may crash the python code.
+	
+
+
+
+
+Error Events:
+	Error in calculation
+
+Log Events:
+	Program started…
+	Server established…
+	Data received…
+	Connection Lost
+	Error in calculation
+	Whenever anything is done with the instrument connection/disconnection routine
+	After each change in the preflight checklist.
+
+CHECKLIST
+	Preflight check:
+		List of preflight things that should have been completed (checkboxes for each?)
+			Probe Cover Off
+			Add butanol if needed -- 50 mls (2/3" height in fill bottle) for 25 hours
+			Power strip switch ON, UHSAS switch ON, Top Box Power Switch ON, TDL switch ON
+			CVI Laptop ON, WIBS laptop ON.
+			Set up T Controller: CTR1(release)/RUN(release), CTR2/RUN, CTR3/RUN (CTR4 not needed).
+				To change setpoint 1, CTR1/STOP, CTR1(hold)/SETPT(release). Enter setpoint with right key,
+				left key to exit (if passcode is needed, it's 3254)
+			Open main valve on one zero air cylinder and toggle valve downstream, check gauge P at ~20 psi
+			When Laptop boots:
+				Login as CVI-OPS without password (FYI--Admin password is "cvi") & check time
+				Start UHSAS vi. Then: Laser Control: Temp & Current On, Histogram Tab: Run
+				Double click on CVI_IDEAS2013 icon to start labview VI (program)
+			On open vi, click Run arrow. Click big black flow button (to ON). Check DSM data coming on TEST tables
+			Press CONNECT (left side of screen): & follow prompts for WIBS connect, ignoring valve changes
+			Pump switch ON (main box) to test system flows & that particles and water vapor are ~0
+			VNC to WIBS computer, follow WIBS checklist, minimize VNC ("dms-sw-loaner" is name)
+			On Top box: Pump switch OFF
+			On main vi, click big Flow button (to OFF), & yellow STOP button
+			(if you have time) Open Date/Time windows on both laptops to make sure they sync
+			Open xchat, join #GV
+	BEFORE TAKEOFF
+		Start UHSAS recording and give data file name: Record (enter file name)
+		On open main vi, click Run arrow. Big black Flow button (to On). Check DSM data coming on TEST tables
+		Press CONNECT (left side of screen): & follow prompts for WIBS connect, ignoring valve changes
+		Pump switch ON (main box)
+		Main heater switch ON box (No shroud, so "Shroud Heater" switch stays OFF)
+		Through VNC, check that WIBS is still running
+		Record Labview data file name (*.*q) at bottom of screen
+	DURING FLIGHT
+		Monitor variables. Monitor Zero Air & switch cylinders if nec. by closing one and rapidly opening other.
+		Take ambient sample as needed for WIBS & filters (saves air but don't overdo)
+			Change "CVI" switch up to "TOTAL" (front panel, upper left)
+			After sample, change "TOTAL" down to "CVI" (Return to CVI mode for landing)
+		If RHOOTDL > ~0.4 g/m^3), increase FX0C & FX2C from 2.0 to ~ 6.0 clpm or higher (5 slpm is max).
+			Return flows to normal 2.0 when out of cloud
+		To sample on filter in cloud (set up prior to cloud pass)
+		Begin Sampling:
+			Press CONNECT button on CVI display front panel. Ignore steps for Users.
+			Open 2 green impactor valves and close blue on in center.
+			Press large CVI button on right of windows that opens
+			Push large USER button on 2nd window.
+			Record sample start time, alt, etc. in lab book chart
+		After Sampling:
+			Press disconnect button on front panel	
+			Open blue vale in center and close 2 green impactor valves
+			Press large USER button on right of window that opens
+			Push large CVI button on 2nd window
+			Record sample end time, alt, etc. on chart.
+	AFTER LANDING
+		Main heaters OFF (Can do on descent if cloud-free)
+		Pump Switch OFF
+		Laptop:
+			Click big red Flow button (to OFF)
+			Click big yellow STOP toggle switch (updates stop)
+			File-Exit Program
+		UHSAS: Stop button in program
+		TDL and Main box Power switch OFF, UHSAS OFF, rear power strip OFF
+		Thru VNC, run WIBS in Forced Trigger mode 3 minutes, then File-Exit
+		If time, download CVI "q" file & WIBS data files to memory stick
+		Shutdown CVI & WIBS laptops
+		Zero Air Valves closed, record pressure and replace zero air if necessary (uses ~200 psi/hour)
+		Check Probe Cover on
+		
+		
+THINGS TO DO WITH A PREFLIGHT BUTTON
+COMPLETE * Request what prefix to give the flight (RF01, TF92, etc.)
+	Provide Preflight checklist and allow users to connect WIBS (single button?)
+	
+		
+Something to fix:
+
+	TEMPORARILY SOLVED WITH EXCEPTION HANDLING RETURN
+	
+Traceback (most recent call last):
+  File "CVI_Interface.py", line 2195, in processData
+    input = [float(i) for i in input]
+  File "CVI_Interface.py", line 2195, in <listcomp>
+    input = [float(i) for i in input]
+ValueError: could not convert string to float: '-99.9960001.5'
+
+
+
+SOCRATES Specific changes:
+
+COMPLETE * Change calibration parameters to use scientific notation .6E
+COMPLETE * Create rolling indicator of values that are being rolled from before
+ 	COMPLETE * Apply color scheme (yellow box indicates rollover)
+COMPLETE * Divide up more error handling in computations
+COMPLETE * Depending on error handling exception, proceed through calculations anyways
+COMPLETE * Change labeling for ancillary instrumentation (Buttons need to match labels)
+COMPLETE * Need a flag when instruments not updating. (both DSM and ancillary)
+COMPLETE * Temperature flag when exceeds limits..
+COMPLETE * Add units to variables on screen (in file?)	
+CANCELLED * Change raw input/output labeling to change when slider moves to maxes
+COMPLETE * Add quadratic inversion for flow outputs		
+		
+COMPLETE * .dat files to .csv
+DELAYED * Manual airspeed injector button
+ * Physical manual vs auto button for plotting
+COMPLETE * Add precision to plotting values
+COMPLETE * Either move flow button or add sanity check
+COMPLETE * Double check flow excess units
+COMPLETE * Check cvf3
+COMPLETE * Maybe revert to linear cals?
+COMPLETE * Actual counterflow excess on ancillary instrument screen		
+COMPLETE * Adjust dimension to show time elapsed indicator for raw table	
+		
+
+
+
+

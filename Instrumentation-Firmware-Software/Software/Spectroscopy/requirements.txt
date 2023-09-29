@@ -1,0 +1,1 @@
+numba numba_special matplotlib PyQt5 lmfit jdcal pandas netCDF4 seaborn brokenaxes hapi hitran-api
